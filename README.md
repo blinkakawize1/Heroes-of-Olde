@@ -1,6 +1,3 @@
-# Project Azure
- text based rpg engine
-
 Hello all and thank you for having a look at my game.
 
 This text based RPG is being written in python using the python IDLE.
