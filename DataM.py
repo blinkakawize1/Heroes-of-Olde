@@ -37,15 +37,30 @@ Crate = {'Name': "Crate",
 OddTile = {'Name': "Odd tile on the wall",
            'Description': "This tile doesn't match the others."}
 
+#weapons
+Sword = {'Name': "Sword",
+         'Description': "Sharp, very sharp.",
+         'Attack': 5}
+
+#consumable
+Potion = {'Name': "Potion",
+         'Description': "Healing potion.",
+         'Heal': 5,
+         'Damage': 0}
+
+#usable
+Key = {'Name': "Key",
+       'Description': "An iron key."}
+
 #player
 Player = {'Name': '',
           'Race': '',
           'Level': 1,
           'Health': 100,
           'Mana': 50,
-          'Inventory': [],
+          'Inventory': ['Sword', 'Potion', 'Key'],
           'Quests': [],
-          'Location': '',
+          'Location': 'Averton',
           'Target': '',
 
           'BothHands': '',
@@ -141,6 +156,15 @@ DataMap = {#locations
            'Barrel': Barrel,
            'OddTile': OddTile,
            'Crate': Crate,
+
+           #weapons
+           'Sword': Sword,
+
+           #consumables
+           'Potion': Potion,
+
+           #usables
+           'Key': Key,
 
            #npcs
            'OldMan': OldMan,

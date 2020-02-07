@@ -2,6 +2,20 @@ from DataM import *
 import os
 import random
 
+#game intro
+def intro():
+    '''print("Welcome to Fantasy World. Prepare yourself for adventure!")
+    print()
+    os.system('pause')
+    os.system('cls')
+    print("What is your name, chosen one? ")
+    print()
+    os.system('cls')
+    print(f"Hail, {Player['Name']}. Your journey awaits you.")
+    print()
+    os.system('pause')
+    os.system('cls')'''
+    
 #main actions menu
 def main_actions():
     actionMap = {'Explore': explore,
@@ -13,10 +27,11 @@ def main_actions():
     for index, element in enumerate(availableActions, 1):
             print(index, "\b.", element)
     userInput = input_validation(availableActions, "Do what? ")
-    if userInput != 'menu':
-        return actionMap[availableActions[userInput]]()
+    if userInput != 'other menu':
+        return actionMap[userInput]()
     else:
         pass
+    
 def actions_filter():
     availableActions = ['Explore', 'Travel', 'Examine', 'Talk']
     if not DataMap[Player['Location']]['Explorable']:
@@ -30,10 +45,17 @@ def actions_filter():
     return availableActions
 
 def player_status():
-    print(f"""Location: {DataMap[Player['Location']]['Name']}              (p)layer / (o)ptions
+    if Player['Location'] != '':
+        print(f"""Location: {DataMap[Player['Location']]['Name']}              (p)layer / (o)ptions
 Health: {Player['Health']}""")
     if Player['Target'] != '':
         print(f"Target: {DataMap[Player['Target']]['Name']}")
+        
+#other menus
+def inventory():
+    for index, element in enumerate(Player['Inventory'], 1):
+            print(index, "\b.", DataMap[element]['Name'])
+    os.system('pause')
 
 #main actions
 def explore():
@@ -45,12 +67,11 @@ def travel():
     for index, element in enumerate(DataMap[Player['Location']]['Sub-locations'], 1):
         print(index, "\b.", DataMap[element]['Name'])
     userInput = input_validation(DataMap[Player['Location']]['Sub-locations'], "Go where? ")
-    Player['Location'] = DataMap[Player['Location']]['Sub-locations'][userInput]
+    Player['Location'] = userInput
     os.system('cls')
     player_status()
     print(f"\nYou traveled to {DataMap[Player['Location']]['Name']}.")
     main_actions()
-    
     
 def examine():
     print()
@@ -59,16 +80,15 @@ def examine():
     userInput = input_validation(DataMap[Player['Location']]['Objects'], "Examine what? ")
     os.system('cls')
     player_status()
-    print(f"\n{DataMap[DataMap[Player['Location']]['Objects'][userInput]]['Description']}")
+    print(f"\n{DataMap[userInput]['Description']}")
     main_actions()
-    
-                        
+                
 def talk():
     print()
     for index, element in enumerate(DataMap[Player['Location']]['Npcs'], 1):
         print(index, "\b.", DataMap[element]['Name'])
     userInput = input_validation(DataMap[Player['Location']]['Npcs'], "Talk to whom? ")
-    Player['Target'] = DataMap[Player['Location']]['Npcs'][userInput]
+    Player['Target'] = userInput
     os.system('cls')
     dialogue(DataMap[DataMap[Player['Target']]['Dialogue']])
 
@@ -90,8 +110,8 @@ def dialogue(curDialogue):
         for index, element in enumerate(curDialogue[cur][1], 1):
             print(index, "\b.", element[0])
         userInput = input_validation(curDialogue[cur][1], "Say what? ")
-        if userInput != 'menu':
-            for key in curDialogue[cur][1][userInput]:
+        if userInput != 'other menu':
+            for key in userInput:
                 element = DataMap.get(key)
                 if isinstance(element, str):
                     if element == 'Exit':
@@ -100,9 +120,7 @@ def dialogue(curDialogue):
                         print()
                         print(curDialogue[cur])
                         print()
-                        inputExit = input("Type 'c' to continue. ")
-                        while inputExit != "c":
-                            inputExit = input("Invalid choice. Type 'c' to continue. ")
+                        os.system('pause')
                         cur = 'Exit'
                     else:
                         announcements.append(element)
@@ -111,10 +129,10 @@ def dialogue(curDialogue):
                 if isinstance(element, dict):
                     curDialogue = element
                     cur = '1'
-        Player['Target'] = ''
-        os.system('cls')
-        player_status()
-        main_actions()
+    Player['Target'] = ''
+    os.system('cls')
+    player_status()
+    main_actions()
 
 #input validation
 def input_validation(actionList, actionString):
@@ -122,10 +140,10 @@ def input_validation(actionList, actionString):
     userInput = input(actionString)
     while True:
         if userInput.isdigit() and 0 < int(userInput) <= len(actionList):
-            return int(userInput) - 1
+            return actionList[int(userInput) - 1]
         elif userInput == 'p':
             player_info()
-            return 'menu'
+            return 'other menu'
         elif userInput == 'o':
             pass
         userInput = input(f"Invalid choice. {actionString}")
@@ -142,9 +160,10 @@ Mana: {Player['Mana']}""")
     print()
     playerInfoMenu = ['Inventory', 'Quests']
     for index, element in enumerate(playerInfoMenu, 1):
-        print(index, "\b.", element)
+        print(index, '\b.', element)
     userInput = input_validation(playerInfoMenu, "Which option? ")
-    if userInput:
-        pass
-    
-          
+    if userInput == playerInfoMenu[0]:
+        os.system('cls')
+        player_status()
+        print()
+        inventory()
