@@ -114,5 +114,5 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="text_entered" from="Control/Panel/LineEdit" to="Control/Panel/LineEdit" method="_on_LineEdit_text_entered"]
-[connection signal="text_entered" from="Control/Panel/LineEdit" to="." method="_on_LineEdit_text_entered"]
+[connection signal="text_entered" from="Control/Panel/LineEdit" to="Control/Panel/LineEdit" method="_on_LineEdit_return"]
+[connection signal="text_entered" from="Control/Panel/LineEdit" to="." method="_on_LineEdit_return"]

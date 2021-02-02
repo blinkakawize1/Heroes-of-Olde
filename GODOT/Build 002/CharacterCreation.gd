@@ -67,8 +67,7 @@ func go_back():
 
 var start_prompt = {'text': "Welcome to Heroes of Olde.",
 					'options_text': ["Create character", "Load character"],
-					'options_actions': [create_character(), load_character()],
-					'single_action': null}
+					'options_actions': [funcref(self, 'create_character'), funcref(self, 'load_character')]}
 					
 func create_character():
 	render_screen()
@@ -78,7 +77,7 @@ func load_character():
 	
 var race_prompt = {'text': "Choose your character's race.",
 					'options_text': ["Human", "Dwarf", "Elf", "Halfling", "Half-giant", "Go back"],
-					'options_actions': [assign_race()]}
+					'options_actions': [funcref(self, 'assign_race')]}
 
 func assign_race():
 	player['race'] = race_prompt['options_text'][user_input]
@@ -105,10 +104,10 @@ func _on_LineEdit_return(content):
 			go_back()
 			return
 		elif current_prompt['options_actions'].size() > 1:
-			current_prompt['options_actions'][user_input]
+			current_prompt['options_actions'][user_input].call()
 			render_screen()
 		else:
-			current_prompt['options_actions']
+			current_prompt['options_actions'][0].call()
 			render_screen()
 
 func save_player():

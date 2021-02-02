@@ -15,5 +15,5 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func _on_LineEdit_text_entered(_new_text):
+func _on_LineEdit_return(_content):
 	clear()
