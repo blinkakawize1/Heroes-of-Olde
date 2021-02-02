@@ -92,10 +92,6 @@ margin_right = -0.304077
 margin_bottom = 0.200012
 custom_fonts/normal_font = SubResource( 4 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "Welcome to Heroes of Olde.
-
-1. Create character
-2. Load character"
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -114,5 +110,5 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="text_entered" from="Control/Panel/LineEdit" to="Control/Panel/LineEdit" method="_on_LineEdit_return"]
 [connection signal="text_entered" from="Control/Panel/LineEdit" to="." method="_on_LineEdit_return"]
+[connection signal="text_entered" from="Control/Panel/LineEdit" to="Control/Panel/LineEdit" method="_on_LineEdit_return"]

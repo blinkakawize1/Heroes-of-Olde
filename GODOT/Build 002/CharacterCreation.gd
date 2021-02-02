@@ -57,13 +57,9 @@ var player = {
 
 'weapon proficiency':''}
 
-var previous_prompt = null
-var current_prompt = start_prompt
 var user_input = null
-
-func go_back():
-	current_prompt = previous_prompt
-	render_screen()
+var previous_prompt = null
+var current_prompt = null
 
 var start_prompt = {'text': "Welcome to Heroes of Olde.",
 					'options_text': ["Create character", "Load character"],
@@ -83,29 +79,35 @@ func assign_race():
 	player['race'] = race_prompt['options_text'][user_input]
 	render_screen()
 	
+func go_back():
+	current_prompt = previous_prompt
+	render_screen()
+	
 func render_screen():
 	previous_prompt = current_prompt
 	$Control/Panel/RichTextLabel.clear()
 	$Control/Panel/RichTextLabel.add_text(current_prompt['text'])
+	$Control/Panel/RichTextLabel.add_text('\n')
 	
 	var index = 1
 	for element in current_prompt['options_text']:
-		$Control/Panel/RichTextLabel.add_text(index, element)
+		$Control/Panel/RichTextLabel.add_text('\n')
+		$Control/Panel/RichTextLabel.add_text(str(index, '. '))
+		$Control/Panel/RichTextLabel.add_text(element)
 		index += 1
 
 func _on_LineEdit_return(content):
 	if content.is_valid_integer():
 		user_input = int(content) - 1
 	else:
-		user_input = content - 1
-		
+		user_input = content
+	
 	if user_input in range(current_prompt['options_text'].size()):
 		if current_prompt['options_text'][user_input] == "Go back":
 			go_back()
 			return
 		elif current_prompt['options_actions'].size() > 1:
 			current_prompt['options_actions'][user_input].call()
-			render_screen()
 		else:
 			current_prompt['options_actions'][0].call()
 			render_screen()
@@ -122,3 +124,6 @@ func load_score():
 	player = file.get_var()
 	file.close()
 	
+func _ready():
+	current_prompt = start_prompt
+	render_screen()
