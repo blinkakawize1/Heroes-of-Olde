@@ -1,0 +1,628 @@
+[gd_scene format=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TabContainer" type="TabContainer" parent="Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 276.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Game" type="Tabs" parent="Panel/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="TabContainer" type="TabContainer" parent="Panel/TabContainer/Game"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="Label" parent="Panel/TabContainer/Game/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/TabContainer/Game/TabContainer/Main"]
+margin_top = 2.66968
+margin_right = 915.0
+margin_bottom = 397.67
+text = "You wake up in town.
+
+A tumbleweed flies by.
+
+You hear people talking nearby.
+
+(look) There's something here.
+
+(who) There is someone here."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel/TabContainer/Game/TabContainer/Main"]
+margin_left = 751.005
+margin_top = 31.0136
+margin_right = 900.005
+margin_bottom = 96.0136
+text = "Who:
+
+Leroy Jenkins
+YourBestFriend
+idonthaveausername"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Panel/TabContainer/Game/TabContainer/Main"]
+margin_left = 539.665
+margin_top = 25.3439
+margin_right = 694.665
+margin_bottom = 95.3439
+text = "Enemies:
+
+Orc
+Giant Scorpion
+Vile Stinger
+Crazed bandit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="Panel/TabContainer/Game/TabContainer/Main"]
+margin_left = 749.0
+margin_top = 237.0
+margin_right = 894.0
+margin_bottom = 307.0
+text = "Objects:
+
+Crate
+Barrel
+Wooden spoon
+Lost amulet"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="Panel/TabContainer/Game/TabContainer/Main"]
+margin_left = 533.61
+margin_top = 238.016
+margin_right = 678.61
+margin_bottom = 313.016
+text = "Buildings:
+
+General Shop
+Blacksmith
+Temple"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VScrollBar4" type="VScrollBar" parent="Panel/TabContainer/Game/TabContainer/Main"]
+margin_left = 493.35
+margin_top = 17.4756
+margin_right = 505.35
+margin_bottom = 365.476
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Battle" type="Label" parent="Panel/TabContainer/Game/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="GridContainer" type="GridContainer" parent="Panel/TabContainer/Game/TabContainer/Battle"]
+margin_left = 810.858
+margin_top = 17.3496
+margin_right = 929.858
+margin_bottom = 208.35
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Game/TabContainer/Battle/GridContainer"]
+margin_right = 98.0
+margin_bottom = 14.0
+text = "Orc warrior (1)"
+
+[node name="Label2" type="Label" parent="Panel/TabContainer/Game/TabContainer/Battle/GridContainer"]
+margin_top = 18.0
+margin_right = 98.0
+margin_bottom = 32.0
+text = "Orc leader (2)"
+
+[node name="Label3" type="Label" parent="Panel/TabContainer/Game/TabContainer/Battle/GridContainer"]
+margin_top = 36.0
+margin_right = 98.0
+margin_bottom = 50.0
+text = "Orc warrior (3)"
+
+[node name="Label4" type="Label" parent="Panel/TabContainer/Game/TabContainer/Battle/GridContainer"]
+margin_top = 54.0
+margin_right = 98.0
+margin_bottom = 68.0
+text = "Orc warrior (4)"
+
+[node name="Label5" type="Label" parent="Panel/TabContainer/Game/TabContainer/Battle/GridContainer"]
+margin_top = 72.0
+margin_right = 98.0
+margin_bottom = 86.0
+text = "Orc warrior (5)"
+
+[node name="Label6" type="Label" parent="Panel/TabContainer/Game/TabContainer/Battle/GridContainer"]
+margin_top = 90.0
+margin_right = 98.0
+margin_bottom = 104.0
+text = "Orc shaman (6)"
+
+[node name="Label7" type="Label" parent="Panel/TabContainer/Game/TabContainer/Battle/GridContainer"]
+margin_top = 108.0
+margin_right = 98.0
+margin_bottom = 122.0
+text = "Orc warrior (7)"
+
+[node name="Label8" type="Label" parent="Panel/TabContainer/Game/TabContainer/Battle/GridContainer"]
+margin_top = 126.0
+margin_right = 98.0
+margin_bottom = 140.0
+text = "Orc slinger (8)"
+
+[node name="Label9" type="Label" parent="Panel/TabContainer/Game/TabContainer/Battle/GridContainer"]
+margin_top = 144.0
+margin_right = 98.0
+margin_bottom = 158.0
+text = "Orc slinger (9)"
+
+[node name="Label10" type="Label" parent="Panel/TabContainer/Game/TabContainer/Battle/GridContainer"]
+margin_top = 162.0
+margin_right = 98.0
+margin_bottom = 176.0
+text = "Orc slinger (10)"
+
+[node name="GridContainer2" type="GridContainer" parent="Panel/TabContainer/Game/TabContainer/Battle"]
+margin_left = 651.833
+margin_top = 16.3961
+margin_right = 770.833
+margin_bottom = 207.396
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel/TabContainer/Game/TabContainer/Battle/GridContainer2"]
+margin_right = 86.0
+margin_bottom = 14.0
+text = "You(1)"
+
+[node name="Label2" type="Label" parent="Panel/TabContainer/Game/TabContainer/Battle/GridContainer2"]
+margin_top = 18.0
+margin_right = 86.0
+margin_bottom = 32.0
+text = "Soldier ally(2)"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/TabContainer/Game/TabContainer/Battle"]
+margin_right = 678.0
+margin_bottom = 454.0
+text = "The Orc leader let's out a viscious snarl.
+The Orc shaman(6) casts Spirit Shield on Orc leader(2).
+Orc warrior(1) attacks you for 15 damage.
+You block Orc warrior(3)'s attack.
+You attack Orc warrior(1) for 20 damage."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSeparator" type="VSeparator" parent="Panel/TabContainer/Game/TabContainer/Battle"]
+margin_left = 684.0
+margin_top = -2.0
+margin_right = 873.0
+margin_bottom = 472.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSeparator2" type="VSeparator" parent="Panel/TabContainer/Game/TabContainer/Battle"]
+margin_left = 520.305
+margin_top = -2.11282
+margin_right = 709.305
+margin_bottom = 471.887
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialogue" type="Label" parent="Panel/TabContainer/Game/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/TabContainer/Game/TabContainer/Dialogue"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Fredrick the Guide: Hello new adventurer. You and I will be acquainted over the next couple of days because you'll need some assistance if you are to brave this treacherous world!
+
+1. Thank you, Fredrick!
+2. I'm listening.
+3. Get on with it!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Trade" type="Label" parent="Panel/TabContainer/Game/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Character" type="Tabs" parent="Panel/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="TabContainer" type="TabContainer" parent="Panel/TabContainer/Character"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="Tabs" parent="Panel/TabContainer/Character/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/TabContainer/Character/TabContainer/Main"]
+margin_left = 132.712
+margin_top = 20.7551
+margin_right = 313.712
+margin_bottom = 450.755
+text = "Name: Gondon Norbire
+Race: Human
+Archetype: Rogue
+Title: Outlander
+Gender: Male
+Guild:
+Spouse:
+Pet:
+
+Description:
+
+Age: 36
+Body type: Average
+Height: Average
+Hair length: Long
+Hair type: Straight
+Facial hair: Short beard
+Hair color: Brown
+Skin tone: Tan
+Bio: A weathered veteran of the wilderness."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel/TabContainer/Character/TabContainer/Main"]
+margin_left = 412.115
+margin_top = 25.5101
+margin_right = 602.115
+margin_bottom = 444.51
+text = "Level: 5
+Health: 100
+Mana: 100
+Energy: 100
+
+Attributes:
+
+Strength: 6
+Constitution: 5
+Dexterity: 10
+Stamina: 5
+Knowledge: 5
+Wisdom: 5
+
+Masteries: 
+
+survival, archery, construction, lumbering
+
+Weapon proficiency:
+
+Shortbow
+1h Sword"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Panel/TabContainer/Character/TabContainer/Main"]
+margin_left = 643.0
+margin_top = 28.0
+margin_right = 876.0
+margin_bottom = 447.0
+text = "Equipment:
+
+Head:
+Torso: Leather tunic
+Hands:
+Legs: Leather leggings
+Feet: Leather shoes
+Primary weapon: Shortbow
+Secondary weapon: Shortsword
+Shield: None
+Ammo: Iron arrows x30
+Accessory 1:
+Acessory 2:
+
+Mount:
+Accessory 1:
+Accessory 2:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Inventory" type="Tabs" parent="Panel/TabContainer/Character/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/TabContainer/Character/TabContainer/Inventory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Shortsword
+Shortbow
+Iron arrows (30)
+Leather tunic
+Leather leggings
+Leather shoes
+Bread (2)
+Flask (water)
+Torch (2)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Skills" type="Tabs" parent="Panel/TabContainer/Character/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/TabContainer/Character/TabContainer/Skills"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spells" type="Tabs" parent="Panel/TabContainer/Character/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Journal" type="Tabs" parent="Panel/TabContainer/Character/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/TabContainer/Character/TabContainer/Journal"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 36.0
+text = "Save the world: I know, I know... it's so INTENSE. Who could actually save the whole world? I think you'll need some friends for this job."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Help" type="Tabs" parent="Panel/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="TabContainer" type="TabContainer" parent="Panel/TabContainer/Help"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Commands" type="Tabs" parent="Panel/TabContainer/Help/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="RichTexLabel" type="RichTextLabel" parent="Panel/TabContainer/Help/TabContainer/Commands"]
+margin_left = 13.0
+margin_top = 4.0
+margin_right = 956.0
+margin_bottom = 458.0
+text = "(location) + (number): Change the instance of the location you are in. For example if you are in town(1) and you type \"town 3\", it will take you to town(3).
+
+harvest + (object): Get harvestables like stone, wood, herbs, and crops.
+
+explore: Discover new instances. Each time you explore there is a chance for encounters. Like monster ambushes, traders, and special events.
+
+search: Search an instance for harvestables, loot, quest items, and more. Monsters can ambush you when usiing this command..
+
+look: Gives you a description of the room you are in.
+
+examine: For examining objects, monsters, or npcs in the room.
+
+attack: For engaging in battle with a monster, or an npc.
+
+run: For escaping from an enemy in battle. Some enemies cannot be escaped, though.
+
+who: For seing if players are in the area.
+
+eat + (item): Eat perishables to restore fatigue.
+
+drink + (item): Drink perishables to restore fatigue.
+
+rest: For restoring fatigue.
+
+use + (item): For using any item in your inventory whether it's on a quest object or something like a potion for a buff.
+
+destroy: To destroy items in your inventory
+
+talk + (npc): To talk to the specified npc
+
+say: To send chat to players in your instance
+
+shout: to send chat to anyone in your location
+
+whisper + (player): To send a message to specified player
+
+buy + (item): To buy the specified item
+
+sell + (item): To sell an item in your inventory
+
+enter + (building): To enter a building
+
+exit: To leave the building instance you're in.
+
+yes: To answer yes to game prompts
+
+no: To answer no to game prompts
+
+equip + (item): To equip specified item in your inventory
+
+unequip + (item): To unequip specified equipped item
+
+skill + (skill number) + (target, self, object): To use a skill on an object, target, or self.
+
+spell + (spell number) + (target, self, object): To use a spell on an object, target, or self."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextEdit" type="LineEdit" parent="Panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -24.0
+margin_right = 344.0
+text = "look"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel"]
+margin_left = 512.322
+margin_top = 583.292
+margin_right = 607.322
+margin_bottom = 597.292
+text = "T: 1st Hour"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="Panel"]
+margin_left = 438.397
+margin_top = 583.042
+margin_right = 533.397
+margin_bottom = 597.042
+text = "L: Town(1)"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="Panel"]
+margin_left = 591.701
+margin_top = 583.919
+margin_right = 694.701
+margin_bottom = 597.919
+text = "H: 100/100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label4" type="Label" parent="Panel"]
+margin_left = 674.666
+margin_top = 584.046
+margin_right = 769.666
+margin_bottom = 598.046
+text = "M: 100/100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label5" type="Label" parent="Panel"]
+margin_left = 759.476
+margin_top = 584.005
+margin_right = 862.476
+margin_bottom = 598.005
+text = "E: 100/100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label6" type="Label" parent="Panel"]
+margin_left = 837.542
+margin_top = 583.757
+margin_right = 944.54
+margin_bottom = 597.757
+text = "F: 100/100"
+__meta__ = {
+"_edit_use_anchors_": false
+}
