@@ -3,58 +3,56 @@ extends Node
 var player_save= 'user://player_save.save'
 var player = {
 'name': '',
-'race':'',
-'gender':'',
-'title':'',
-'guild':'',
-'age':'',
-'body_type':'',
-'height':'',
-'hair_Length':'',
-'hair_type':'',
-'facial_hair':'',
-'hair_color':'',
-'skin_tone':'',
-'bio':'',
-'spouse':'',
-'pet':'',
+'race': '',
+'gender': '',
+'title': '',
+'guild': '',
+'age': '',
+'body_type': '',
+'height': '',
+'hair_length': '',
+'hair_type': '',
+'facial_hair': '',
+'hair_color': '',
+'skin_tone': '',
+'bio': '',
+'spouse': '',
+'pet': '',
 
-'level':'',
-'health':'',
-'mana':'',
-'energy':'',
-'skills':'',
-'spells':'',
-'inventory':'',
-'quests':'',
+'level': '',
+'health': '',
+'mana': '',
+'energy': '',
+'skills': '',
+'spells': '',
+'inventory': '',
+'quests': '',
 
-'strength':'',
-'constitution':'',
-'dexterity':'',
-'stamina':'',
-'knowledge':'',
-'wisdom':'',
+'strength': '',
+'constitution': '',
+'dexterity': '',
+'stamina': '',
+'knowledge': '',
+'wisdom': '',
 
-'equipment':'',
+'head': '',
+'torso': '',
+'hands': '',
+'legs': '',
+'feet': '',
+'left_hand': '',
+'right_hand': '',
+'accessory_1': '',
+'acessory_2': '',
+'accessory_3': '',
 
-'head':'',
-'torso':'',
-'hands':'',
-'legs':'',
-'feet':'',
-'left_hand':'',
-'right_hand':'',
-'accessory_1':'',
-'acessory_2':'',
-'accessory_3':'',
+'mount': '',
+'m_accessory 1': '',
+'m_accessory 2': '',
 
-'mount':'',
-'m_accessory 1':'',
-'m_accessory 2':'',
+'masteries': '',
 
-'masteries':'',
-
-'weapon_proficiency':''}
+'weapon_proficiency': ''}
 
 var start_prompt = {'text': "Welcome to Heroes of Olde.",
 					'options_text': ["Create character", "Load character"],
@@ -63,8 +61,29 @@ var start_prompt = {'text': "Welcome to Heroes of Olde.",
 					'next_prompt': 'race_prompt'}
 
 func startPrompt_func():
-	print("create character")
+	if current_prompt['options_text'][user_input] == "Create character":
+		pass
+	elif current_prompt['options_text'][user_input] == "Load character":
+		start_prompt['next_prompt'] = 'load_prompt'
+		load_player()
+		load_prompt['text'] = """Do you want to load this character?
 
+Name: {0},
+Race: {1},
+Gender: {2}
+Age: {3},
+Body type: {4},
+Height: {5},
+Hair length: {6},
+Hair type: {7},
+Facial hair: {8},
+Hair color: {9},
+Skin tone: {10}""".format([player['name'], player['race'], player['gender'],
+						  player['age'], player['body_type'], player['height'],
+						  player['hair_length'], player['hair_type'], player['facial_hair'],
+						  player['hair_color'], player['skin_tone']])
+		
+	
 var race_prompt = {'text': "Choose your character's race.",
 					'options_text': ["Human", "Dwarf", "Elf", "Halfling", "Half-giant", "Go back"],
 					'func': funcref(self, 'racePrompt_func'),
@@ -192,14 +211,32 @@ var name_prompt = {'text': "What is your character's name?",
 						
 func namePrompt_func():
 	player['name'] = user_input
-	
-var save_prompt = {'text': """Do you want to save this character?
+	save_prompt['text'] = """Do you want to save this character?
 
-{0},
-{1},
-{2}""".format([player['name'], player['race'], player['gender']]),
+Name: {0},
+Race: {1},
+Gender: {2}
+Age: {3},
+Body type: {4},
+Height: {5},
+Hair length: {6},
+Hair type: {7},
+Facial hair: {8},
+Hair color: {9},
+Skin tone: {10}""".format([player['name'], player['race'], player['gender'],
+						 player['age'], player['body_type'], player['height'],
+						 player['hair_length'], player['hair_type'], player['facial_hair'],
+						 player['hair_color'], player['skin_tone']])
+
+var save_prompt = {'text': '',
 					'options_text': ["Yes", "Go back"],
 					'func': funcref(self, 'save_player'),
+					'previous_prompt': 'name_prompt',
+					'next_prompt': null}
+
+var load_prompt = {'text': '',
+					'options_text': ["Yes", "Go back"],
+					'func': funcref(self, 'start_game'),
 					'previous_prompt': 'name_prompt',
 					'next_prompt': null}
 							
@@ -244,7 +281,7 @@ func save_player():
 	file.store_var(player)
 	file.close()
 
-func load_score():
+func load_player():
 	var file = File.new()
 	file.open(player_save, File.READ)
 	player = file.get_var()
