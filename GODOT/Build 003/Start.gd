@@ -56,150 +56,153 @@ var player = {
 
 'weapon_proficiency':''}
 
-var user_input = null
-var previous_prompt = null
-var current_prompt = null
-
 var start_prompt = {'text': "Welcome to Heroes of Olde.",
 					'options_text': ["Create character", "Load character"],
-					'options_actions': [funcref(self, 'create_character'), funcref(self, 'load_character')],
+					'func': funcref(self, 'startPrompt_func'),
 					'previous_prompt': null,
-					'next_prompt': race_prompt}
+					'next_prompt': 'race_prompt'}
 
-func create_character():
+func startPrompt_func():
 	print("create character")
-	
-func load_character():
-	print("load character")
-	
+
 var race_prompt = {'text': "Choose your character's race.",
 					'options_text': ["Human", "Dwarf", "Elf", "Halfling", "Half-giant", "Go back"],
-					'options_actions': [funcref(self, 'assign_race')],
-					'previous_prompt': start_prompt,
-					'next_prompt': gender_prompt}
+					'func': funcref(self, 'racePrompt_func'),
+					'previous_prompt': 'start_prompt',
+					'next_prompt': 'gender_prompt'}
 
-func assign_race():
+func racePrompt_func():
 	player['race'] = race_prompt['options_text'][user_input]
 	
 var gender_prompt = {'text': "Choose your character's gender.",
 					 'options_text': ["Male", "Female", "Go back"],
-					 'options_actions': [funcref(self, 'assign_gender')],
-					 'previous_prompt': race_prompt,
-					'next_prompt': customize_prompt}
+					 'func': funcref(self, 'genderPrompt_func'),
+					 'previous_prompt': 'race_prompt',
+					 'next_prompt': 'customize_prompt'}
 
-func assign_gender():
+func genderPrompt_func():
 	player['gender'] = gender_prompt['options_text'][user_input]
 	
 var customize_prompt = {'text': "Would you like to customize your character?",
 						'options_text': ["Yes", "No", "Go back"],
-						'options_actions': [funcref(self, 'customize_character')],
-						'previous_prompt': gender_prompt,
-						'next_prompt': age_prompt}
+						'func': funcref(self, 'customizePrompt_func'),
+						'previous_prompt': 'gender_prompt',
+						'next_prompt': 'age_prompt'}
 
-func customize_character():
-	print("customize character")
+func customizePrompt_func():
+	if current_prompt['options_text'][user_input] == "Yes":
+		name_prompt['previous_prompt'] = 'skinTone_prompt'
+		current_prompt['next_prompt'] = 'age_prompt'
+	elif current_prompt['options_text'][user_input] == "No":
+		name_prompt['previous_prompt'] = 'customize_prompt'
+		current_prompt['next_prompt'] = 'name_prompt'
+		
 
 var age_prompt = {'text': "What is your character's age?",
 				  'options_text': ["Young", "Mature", "Old", "Go back"],
-				  'options_actions': [funcref(self, 'assign_age')],
-				  'previous_prompt': customize_prompt,
-				  'next_prompt': bodyType_prompt}
+				  'func': funcref(self, 'agePrompt_func'),
+				  'previous_prompt': 'customize_prompt',
+				  'next_prompt': 'bodyType_prompt'}
 
-func assign_age():
+func agePrompt_func():
 	player['age'] = age_prompt['options_text'][user_input]
 
 var bodyType_prompt = {'text': "What is your character's body type?",
 					   'options_text': ["Muscular", "Fat", "Thin", "Average", "Go back"],
-					   'options_actions': [funcref(self, 'assign_bodyType')],
-					   'previous_prompt': age_prompt,
-					   'next_prompt': height_prompt}
+					   'func': funcref(self, 'bodyTypePrompt_func'),
+					   'previous_prompt': 'age_prompt',
+					   'next_prompt': 'height_prompt'}
 
-func assign_bodyType():
+func bodyTypePrompt_func():
 	player['body_type'] = bodyType_prompt['options_text'][user_input]
 	
 var height_prompt = {'text': "What is your character's height?",
 					   'options_text': ["Short", "Average", "Tall", "Go back"],
-					   'options_actions': [funcref(self, 'assign_height')],
-					   'previous_prompt': bodyType_prompt,
-					   'next_prompt': hairLength_prompt}
+					   'func': funcref(self, 'heightPrompt_func'),
+					   'previous_prompt': 'bodyType_prompt',
+					   'next_prompt': 'hairLength_prompt'}
 
-func assign_height():
+func heightPrompt_func():
 	player['height'] = height_prompt['options_text'][user_input]
 	
 var hairLength_prompt = {'text': "What is your character's hair length?",
 					   'options_text': ["Bald", "Short", "Long", "Go back"],
-					   'options_actions': [funcref(self, 'assign_hairLength')],
-					   'previous_prompt': height_prompt,
-					   'next_prompt': hairType_prompt}
+					   'func': funcref(self, 'hairLengthPrompt_func'),
+					   'previous_prompt': 'height_prompt',
+					   'next_prompt': 'hairType_prompt'}
 
-func assign_hairLength():
+func hairLengthPrompt_func():
 	player['hair_length'] = hairLength_prompt['options_text'][user_input]
 	if player['hair_length'] == "Bald":
-		facialHair_prompt['previous_prompt'] = hairLength_prompt
-		hairLength_prompt['next_prompt']= facialHair_prompt
+		facialHair_prompt['previous_prompt'] = 'hairLength_prompt'
+		hairLength_prompt['next_prompt']= 'facialHair_prompt'
 	else:
-		facialHair_prompt['previous_prompt'] = hairType_prompt
-		hairLength_prompt['next_prompt']= hairType_prompt
+		facialHair_prompt['previous_prompt'] = 'hairType_prompt'
+		hairLength_prompt['next_prompt']= 'hairType_prompt'
 
 var hairType_prompt = {'text': "What is your character's hair type?",
 					   'options_text': ["Straight", "Curly", "Wavy", "Afro", "Braids", "Dreadlocks", "Go back"],
-					   'options_actions': [funcref(self, 'assign_hairType')],
-					   'previous_prompt': hairLength_prompt,
-					   'next_prompt': facialHair_prompt}
+					   'func': funcref(self, 'hairTypePrompt_func'),
+					   'previous_prompt': 'hairLength_prompt',
+					   'next_prompt': 'facialHair_prompt'}
 
-func assign_hairType():
+func hairTypePrompt_func():
 	player['hair_type'] = hairType_prompt['options_text'][user_input]
 
 var facialHair_prompt = {'text': "What is your character's facial hair?",
 					   'options_text': ["Mustache", "Short beard", "Long beard", "Mutton chops",
 										"Goatee", "Soul patch", "None", "Go back"],
-					   'options_actions': [funcref(self, 'assign_facialHair')],
-					   'previous_prompt': hairType_prompt,
-					   'next_prompt': hairColor_prompt}
+					   'func': funcref(self, 'facialHairPrompt_func'),
+					   'previous_prompt': 'hairType_prompt',
+					   'next_prompt': 'hairColor_prompt'}
 
-func assign_facialHair():
+func facialHairPrompt_func():
 	player['facial_hair'] = facialHair_prompt['options_text'][user_input]
 	if player['hair_length'] == "Bald" and player['facial_hair'] == "None":
-		skinTone_prompt['previous_prompt'] = facialHair_prompt
-		facialHair_prompt['next_prompt'] = skinTone_prompt
+		skinTone_prompt['previous_prompt'] = 'facialHair_prompt'
+		facialHair_prompt['next_prompt'] = 'skinTone_prompt'
 	else:
-		skinTone_prompt['previous_prompt'] = hairColor_prompt
-		facialHair_prompt['next_prompt'] = hairColor_prompt
+		skinTone_prompt['previous_prompt'] = 'hairColor_prompt'
+		facialHair_prompt['next_prompt'] = 'hairColor_prompt'
 	
 var hairColor_prompt = {'text': "What is your character's hair color?",
 					   'options_text': ["Black", "Brown", "Blonde", "Red", "White", "Grey", "Go back"],
-					   'options_actions': [funcref(self, 'assign_hairColor')],
-					   'previous_prompt': facialHair_prompt,
-					   'next_prompt': skinTone_prompt}
+					   'func': funcref(self, 'hairColorPrompt_func'),
+					   'previous_prompt': 'facialHair_prompt',
+					   'next_prompt': 'skinTone_prompt'}
 
-func assign_hairColor():
+func hairColorPrompt_func():
 	player['hair_color'] = hairColor_prompt['options_text'][user_input]
 	
 var skinTone_prompt = {'text': "What is your character's skin tone?",
 					   'options_text': ["Pale", "Fair", "Tan", "Pink", "Yellow", "Red",
 										"Brown", "Black", "Go back"],
-					   'options_actions': [funcref(self, 'assign_skinTone')],
-					   'previous_prompt': hairColor_prompt,
-					   'next_prompt': name_prompt}
+					   'func': funcref(self, 'skinTonePrompt_func'),
+					   'previous_prompt': 'hairColor_prompt',
+					   'next_prompt': 'name_prompt'}
 
-func assign_skinTone():
+func skinTonePrompt_func():
 	player['skin_tone'] = skinTone_prompt['options_text'][user_input]
 
 var name_prompt = {'text': "What is your character's name?",
 							'options_text': ["Go back"],
-							'options_actions': [funcref(self, 'assign_characterName')],
-							'previous_prompt': skinTone_prompt,
-							'next_prompt': save_prompt}
+							'func': funcref(self, 'namePrompt_func'),
+							'previous_prompt': 'skinTone_prompt',
+							'next_prompt': 'save_prompt'}
 						
-func assign_name():
+func namePrompt_func():
 	player['name'] = user_input
 	
-var save_prompt = {'text': "Do you want to save this character?",
-							'options_text': ["Yes", "Go back"],
-							'options_actions': [funcref(self, 'save_player')],
-							'previous_prompt': name_prompt,
-							'next_prompt': null}
+var save_prompt = {'text': """Do you want to save this character?
 
+{0},
+{1},
+{2}""".format([player['name'], player['race'], player['gender']]),
+					'options_text': ["Yes", "Go back"],
+					'func': funcref(self, 'save_player'),
+					'previous_prompt': 'name_prompt',
+					'next_prompt': null}
+							
 func render_screen():
 	$Control/Panel/RichTextLabel.clear()
 	$Control/Panel/RichTextLabel.add_text(current_prompt['text'])
@@ -211,7 +214,8 @@ func render_screen():
 		$Control/Panel/RichTextLabel.add_text(str(index, '. '))
 		$Control/Panel/RichTextLabel.add_text(element)
 		index += 1
-
+		
+var user_input = ''
 func _on_LineEdit_return(content):
 	$Control/Panel/LineEdit.clear()
 	if content.is_valid_integer():
@@ -221,16 +225,18 @@ func _on_LineEdit_return(content):
 	
 	if user_input in range(current_prompt['options_text'].size()):
 		if current_prompt['options_text'][user_input] == "Go back":
-			current_prompt = current_prompt['previous_prompt']
-			render_screen()
-		elif current_prompt['options_actions'].size() > 1:
-			current_prompt['options_actions'][user_input].call_func()
-			current_prompt = current_prompt['next_prompt']
+			current_prompt = data_map[current_prompt['previous_prompt']]
 			render_screen()
 		else:
-			current_prompt['options_actions'][0].call_func()
-			current_prompt = current_prompt['next_prompt']
+			current_prompt['func'].call_func()
+			current_prompt = data_map[current_prompt['next_prompt']]
 			render_screen()
+			
+	elif current_prompt == name_prompt:
+		current_prompt['func'].call_func()
+		current_prompt = data_map[current_prompt['next_prompt']]
+		render_screen()
+		
 
 func save_player():
 	var file = File.new()
@@ -244,7 +250,22 @@ func load_score():
 	player = file.get_var()
 	file.close()
 
+var data_map = {'start_prompt': start_prompt,
+				'race_prompt': race_prompt,
+				'gender_prompt': gender_prompt,
+				'customize_prompt': customize_prompt,
+				'age_prompt': age_prompt,
+				'bodyType_prompt': bodyType_prompt,
+				'height_prompt': height_prompt,
+				'hairLength_prompt': hairLength_prompt,
+				'hairType_prompt': hairType_prompt,
+				'facialHair_prompt': facialHair_prompt,
+				'hairColor_prompt': hairColor_prompt,
+				'skinTone_prompt': skinTone_prompt,
+				'name_prompt': name_prompt,
+				'save_prompt': save_prompt}
+
+var current_prompt = data_map['start_prompt']
 func _ready():
 	$Control/Panel/LineEdit.grab_focus()
-	current_prompt = start_prompt
 	render_screen()
