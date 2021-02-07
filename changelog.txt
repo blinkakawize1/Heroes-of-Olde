@@ -1,3 +1,7 @@
 build 001
 #started build numbering back to 1
+#refactored code structure for start menu/character creation
 #build 001 is the start menu/character creation
+#added new font because original didn't have punctuation symbols
+#finished prototype save/load function
+#added player profile folder to project folder
