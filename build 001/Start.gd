@@ -1,6 +1,6 @@
 extends Node
 
-var player_save= 'user://player_save.save'
+var player_save= '/home/wize1/text based rpg/builds/godot/build 001/profiles/player_save.save'
 var player = {
 'name': '',
 'race': '',
@@ -58,26 +58,26 @@ var start_prompt = {'text': "Welcome to Heroes of Olde.",
 					'options_text': ["Create character", "Load character"],
 					'func': funcref(self, 'startPrompt_func'),
 					'previous_prompt': null,
-					'next_prompt': 'race_prompt'}
+					'next_prompt': null}
 
 func startPrompt_func():
 	if current_prompt['options_text'][user_input] == "Create character":
-		pass
+		start_prompt['next_prompt'] = 'race_prompt'
 	elif current_prompt['options_text'][user_input] == "Load character":
 		start_prompt['next_prompt'] = 'load_prompt'
 		load_player()
 		load_prompt['text'] = """Do you want to load this character?
 
-Name: {0},
-Race: {1},
+Name: {0}
+Race: {1}
 Gender: {2}
-Age: {3},
-Body type: {4},
-Height: {5},
-Hair length: {6},
-Hair type: {7},
-Facial hair: {8},
-Hair color: {9},
+Age: {3}
+Body type: {4}
+Height: {5}
+Hair length: {6}
+Hair type: {7}
+Facial hair: {8}
+Hair color: {9}
 Skin tone: {10}""".format([player['name'], player['race'], player['gender'],
 						  player['age'], player['body_type'], player['height'],
 						  player['hair_length'], player['hair_type'], player['facial_hair'],
@@ -213,16 +213,16 @@ func namePrompt_func():
 	player['name'] = user_input
 	save_prompt['text'] = """Do you want to save this character?
 
-Name: {0},
-Race: {1},
+Name: {0}
+Race: {1}
 Gender: {2}
-Age: {3},
-Body type: {4},
-Height: {5},
-Hair length: {6},
-Hair type: {7},
-Facial hair: {8},
-Hair color: {9},
+Age: {3}
+Body type: {4}
+Height: {5}
+Hair length: {6}
+Hair type: {7}
+Facial hair: {8}
+Hair color: {9}
 Skin tone: {10}""".format([player['name'], player['race'], player['gender'],
 						 player['age'], player['body_type'], player['height'],
 						 player['hair_length'], player['hair_type'], player['facial_hair'],
@@ -230,15 +230,21 @@ Skin tone: {10}""".format([player['name'], player['race'], player['gender'],
 
 var save_prompt = {'text': '',
 					'options_text': ["Yes", "Go back"],
-					'func': funcref(self, 'save_player'),
+					'func': funcref(self, 'savePrompt_func'),
 					'previous_prompt': 'name_prompt',
-					'next_prompt': null}
+					'next_prompt': 'start_prompt'}
+
+func savePrompt_func():
+	save_player()
 
 var load_prompt = {'text': '',
 					'options_text': ["Yes", "Go back"],
-					'func': funcref(self, 'start_game'),
-					'previous_prompt': 'name_prompt',
-					'next_prompt': null}
+					'func': funcref(self, 'loadPrompt_func'),
+					'previous_prompt': 'start_prompt',
+					'next_prompt': 'start_prompt'}
+					
+func loadPrompt_func():
+	load_player()
 							
 func render_screen():
 	$Control/Panel/RichTextLabel.clear()
@@ -300,7 +306,8 @@ var data_map = {'start_prompt': start_prompt,
 				'hairColor_prompt': hairColor_prompt,
 				'skinTone_prompt': skinTone_prompt,
 				'name_prompt': name_prompt,
-				'save_prompt': save_prompt}
+				'save_prompt': save_prompt,
+				'load_prompt': load_prompt}
 
 var current_prompt = data_map['start_prompt']
 func _ready():
