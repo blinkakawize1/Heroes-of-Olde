@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://resources/SelawikSemibold-4BEm6.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://resources/Magensburg-3zony.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://fonts/Magensburg-3zony.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Start.gd" type="Script" id=3]
+[ext_resource path="res://fonts/SelawikSemibold-4BEm6.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.584314, 0.427451, 0.270588, 1 )
@@ -27,10 +27,10 @@ corner_detail = 10
 [sub_resource type="DynamicFont" id=3]
 size = 65
 outline_color = Color( 1, 0.988235, 0.988235, 1 )
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 4 )
 
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.584314, 0.427451, 0.270588, 1 )
@@ -45,7 +45,7 @@ corner_detail = 10
 [sub_resource type="DynamicFont" id=6]
 size = 20
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 2 )
+font_data = ExtResource( 4 )
 
 [node name="Node" type="Node"]
 script = ExtResource( 3 )
@@ -88,7 +88,7 @@ margin_left = 0.495998
 margin_top = -1.52588e-05
 margin_right = -0.304077
 margin_bottom = 0.200012
-custom_fonts/normal_font = SubResource( 7 )
+custom_fonts/normal_font = SubResource( 4 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": true
@@ -97,7 +97,7 @@ __meta__ = {
 [node name="LineEdit" type="LineEdit" parent="Control/Panel"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -30.0
+margin_top = -35.0
 margin_right = 342.0
 custom_styles/normal = SubResource( 5 )
 custom_fonts/font = SubResource( 6 )
